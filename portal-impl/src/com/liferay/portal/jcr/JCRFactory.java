@@ -14,6 +14,7 @@
 
 package com.liferay.portal.jcr;
 
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.util.PropsUtil;
 
@@ -25,6 +26,21 @@ import javax.jcr.Session;
  */
 public interface JCRFactory {
 
+	public static final String REPOSITORY_ROOT =
+		PropsUtil.get(PropsKeys.JCR_REPOSITORY_ROOT);
+
+	public static final String CONFIG_FILE_PATH =
+		PropsUtil.get(PropsKeys.JCR_CONFIG_FILE_PATH);
+
+	public static final String REPOSITORY_HOME =
+		PropsUtil.get(PropsKeys.JCR_REPOSITORY_HOME);
+
+	public static final String CREDENTIALS_USERNAME =
+		PropsUtil.get(PropsKeys.JCR_CREDENTIALS_USERNAME);
+
+	public static final char[] CREDENTIALS_PASSWORD = GetterUtil.getString(
+		PropsUtil.get(PropsKeys.JCR_CREDENTIALS_PASSWORD)).toCharArray();
+
 	public static final String WORKSPACE_NAME =
 		PropsUtil.get(PropsKeys.JCR_WORKSPACE_NAME);
 
@@ -34,9 +50,11 @@ public interface JCRFactory {
 	public Session createSession(String workspaceName)
 		throws RepositoryException;
 
-	public void initialize() throws RepositoryException;
+	public void initialize()
+		throws RepositoryException;
 
-	public void prepare() throws RepositoryException;
+	public void prepare()
+		throws RepositoryException;
 
 	public void shutdown();
 
