@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.SortedArrayList;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portlet.documentlibrary.NoSuchFileEntryTypeException;
 import com.liferay.portlet.documentlibrary.NoSuchFolderException;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFileEntryType;
@@ -144,6 +145,12 @@ public class DLFileEntryTypeLocalServiceImpl
 		return dlFileEntryTypePersistence.findByPrimaryKey(fileEntryTypeId);
 	}
 
+	public DLFileEntryType getFileEntryType(long groupId, String name)
+		throws SystemException, NoSuchFileEntryTypeException {
+
+		return dlFileEntryTypePersistence.findByG_N(groupId, name);
+	}
+	
 	public List<DLFileEntryType> getFileEntryTypes(long groupId)
 		throws SystemException {
 
@@ -155,14 +162,6 @@ public class DLFileEntryTypeLocalServiceImpl
 		throws SystemException {
 
 		return dlFileEntryTypePersistence.findByGroupId(groupId, start, end);
-	}
-
-	public List<DLFileEntryType> getFileEntryTypes(
-			long groupId, String name, String description)
-		throws SystemException {
-
-		return dlFileEntryTypePersistence.findByG_N_D(
-			groupId, name, description);
 	}
 
 	public List<DLFileEntryType> getFolderFileEntryTypes(

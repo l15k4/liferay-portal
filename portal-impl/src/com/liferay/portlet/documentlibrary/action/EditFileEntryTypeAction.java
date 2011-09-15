@@ -30,7 +30,9 @@ import com.liferay.portal.util.WebKeys;
 import com.liferay.portlet.documentlibrary.NoSuchFileEntryTypeException;
 import com.liferay.portlet.documentlibrary.model.DLFileEntryMetadata;
 import com.liferay.portlet.documentlibrary.model.DLFileEntryType;
+import com.liferay.portlet.documentlibrary.service.DLFileEntryTypeLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryTypeServiceUtil;
+import com.liferay.portlet.documentlibrary.DuplicateFileEntryTypeException;
 import com.liferay.portlet.dynamicdatamapping.NoSuchStructureException;
 import com.liferay.portlet.dynamicdatamapping.RequiredStructureException;
 import com.liferay.portlet.dynamicdatamapping.StructureDuplicateElementException;
@@ -81,6 +83,7 @@ public class EditFileEntryTypeAction extends PortletAction {
 		}
 		catch (Exception e) {
 			if (e instanceof NoSuchFileEntryTypeException ||
+				e instanceof DuplicateFileEntryTypeException ||
 				e instanceof NoSuchStructureException ||
 				e instanceof PrincipalException) {
 
@@ -204,11 +207,20 @@ public class EditFileEntryTypeAction extends PortletAction {
 		if (fileEntryTypeId <= 0) {
 
 			// Add file entry type
-
-			DLFileEntryType fileEntryType =
-				DLFileEntryTypeServiceUtil.addFileEntryType(
-					themeDisplay.getScopeGroupId(), name, description,
-					ddmStructureIds, serviceContext);
+			DLFileEntryType fileEntryType = null;
+			try {
+				DLFileEntryTypeLocalServiceUtil.getFileEntryType(
+					themeDisplay.getScopeGroupId(), name);
+				
+				throw new DuplicateFileEntryTypeException();
+			}
+			catch (NoSuchFileEntryTypeException nse) {
+				fileEntryType =
+					DLFileEntryTypeServiceUtil.addFileEntryType(
+						themeDisplay.getScopeGroupId(), name, description,
+						ddmStructureIds, serviceContext);
+			}
+			
 
 			// Add dynamic data mapping structure
 

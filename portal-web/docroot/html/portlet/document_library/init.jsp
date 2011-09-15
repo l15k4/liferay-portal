@@ -40,6 +40,7 @@
 <%@ page import="com.liferay.portlet.asset.service.AssetEntryServiceUtil" %>
 <%@ page import="com.liferay.portlet.asset.service.persistence.AssetEntryQuery" %>
 <%@ page import="com.liferay.portlet.documentlibrary.DuplicateFileException" %>
+<%@ page import="com.liferay.portlet.documentlibrary.DuplicateFileEntryTypeException" %>
 <%@ page import="com.liferay.portlet.documentlibrary.DuplicateFolderNameException" %>
 <%@ page import="com.liferay.portlet.documentlibrary.DuplicateRepositoryNameException" %>
 <%@ page import="com.liferay.portlet.documentlibrary.FileExtensionException" %>
