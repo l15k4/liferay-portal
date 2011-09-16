@@ -292,5 +292,17 @@
 	<classpathentry kind="lib" path="lib/portal/xpp3.jar"/>
 	<classpathentry kind="lib" path="lib/portal/xstream.jar"/>
 	<classpathentry kind="lib" path="lib/portal/xuggle-xuggler.jar"/>
+	<classpathentry kind="lib" path="lib/portal/modeshape-common.jar"/>
+	<classpathentry kind="lib" path="lib/portal/modeshape-graph.jar"/>
+	<classpathentry kind="lib" path="lib/portal/modeshape-jcr-api.jar"/>
+	<classpathentry kind="lib" path="lib/portal/modeshape-jcr.jar"/>
+	<classpathentry kind="lib" path="lib/portal/modeshape-repository.jar"/>
+	<classpathentry kind="lib" path="lib/portal/modeshape-cnd.jar"/>
+	<classpathentry kind="lib" path="lib/portal/modeshape-search-lucene.jar"/>
+	<classpathentry kind="lib" path="lib/portal/lucene-regex.jar"/>
+	<classpathentry kind="lib" path="lib/portal/lucene-misc.jar"/>
+	<classpathentry kind="lib" path="lib/portal/lucene-snowball.jar"/>
+	<classpathentry kind="lib" path="lib/portal/google-collections.jar"/>
+	<classpathentry kind="lib" path="lib/portal/jcip-annotations.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
