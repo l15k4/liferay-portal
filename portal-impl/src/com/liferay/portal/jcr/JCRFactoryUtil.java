@@ -15,6 +15,8 @@
 package com.liferay.portal.jcr;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.util.PropsUtil;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
@@ -24,10 +26,13 @@ import javax.jcr.Session;
  */
 public class JCRFactoryUtil {
 
+	public static final String JCR_IMPL =
+					PropsUtil.get(PropsKeys.JCR_IMPL);
+	
 	public static JCRFactory getJCRFactory() {
 		if (_jcrFactory == null) {
 			_jcrFactory = (JCRFactory)PortalBeanLocatorUtil.locate(
-				_JCR_FACTORY);
+				JCR_IMPL);
 		}
 
 		return _jcrFactory;
@@ -58,8 +63,6 @@ public class JCRFactoryUtil {
 	public static void shutdown() {
 		getJCRFactory().shutdown();
 	}
-
-	private static final String _JCR_FACTORY = JCRFactory.class.getName();
 
 	private static JCRFactory _jcrFactory;
 
